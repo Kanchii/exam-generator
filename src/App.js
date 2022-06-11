@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import React from 'react'
+
+import Test from './Components/Test'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container'
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import TestProvider from './Contexts/TestContext';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container className="p-3">
+      <Tabs defaultActiveKey="home" id="menu-initial" className="mb-3">
+        <Tab eventKey="home" title="Home">
+          <TestProvider>
+            <Test />
+          </TestProvider>
+        </Tab>
+        <Tab eventKey="about" title="About">
+          <p>Um semi-jovem careca tentando fazer site?</p>
+        </Tab>
+      </Tabs>
+    </Container>
+  )
 }
 
 export default App;
