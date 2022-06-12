@@ -19,7 +19,7 @@ function Question({
     const [hit, setHit] = useState(false)
 
     return (
-        <Card>
+        <Card key={index}>
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>
@@ -32,7 +32,7 @@ function Question({
                         name={`question-${index}`}
                         label={value}
                         disabled={finished}
-                        style={idx === answer && finished ? {"background-color": "#00FF00"} : {"background-color": "#FFFFFF"}}
+                        style={idx === answer && finished ? {"backgroundColor": "#00FF00"} : {"backgroundColor": "#FFFFFF"}}
                         id={`question-${index}-option-${idx}`}
                         onClick={() => {
                             if(clicked === false){

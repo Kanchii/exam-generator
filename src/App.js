@@ -16,7 +16,7 @@ const App = () => {
       <Tabs defaultActiveKey="home" id="menu-initial" className="mb-3">
         <Tab eventKey="home" title="Home">
           <TestProvider>
-            <Test />
+            <Test maximumTime={100} />
           </TestProvider>
         </Tab>
         <Tab eventKey="about" title="About">
