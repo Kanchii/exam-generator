@@ -5,15 +5,17 @@ import { useState } from 'react'
 
 function Session({
     theme,
-    numberOfQuestions,
-    database
+    questions
 }) {
-    const questions = database.getQuestions(numberOfQuestions)
     const [ answered, setAnswered ] = useState(0)
+
+    if(!questions || questions.length === 0)
+        return <></>
+
     return (
         <Accordion>
             <Accordion.Item eventKey="0">
-                <Accordion.Header>{`${theme} (${answered}/${numberOfQuestions})`}</Accordion.Header>
+                <Accordion.Header>{`${theme} (${answered}/${questions.length})`}</Accordion.Header>
                 <Accordion.Body>
                     {questions.map((v, idx) => {
                         return <>

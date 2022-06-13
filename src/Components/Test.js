@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 import Session from './Session'
 import { useTestContext } from '../Contexts/TestContext'
@@ -26,29 +26,39 @@ function Test({
 
 	const [totalTime, setTotalTime] = useState(maximumTime);
 
-	setTotalQuestions(2)
+	const raciocinioLogicoQuestions = useRef(null)
+	const informaticaQuestions = useRef(null)
+
+	useEffect(() => {
+		setTotalQuestions(3)
+		
+		raciocinioLogicoQuestions.current = new RaciocioLogico().getQuestions(1)
+		informaticaQuestions.current = new Informatica().getQuestions(2)
+	}, [])
 	
 	return (
-		<Container>
-			<Row style={{"margin": "5px"}}>
-				<Col sm={11}><StartButton totalTime={totalTime} setTotalTime={setTotalTime} /></Col>
-				<Col sm={1}>{formatTime(totalTime)}</Col>
+		<Container style={{"margin": "5px"}}>
+			<Row >
+				<Col>
+					<StartButton style={{"width": "100px"}} totalTime={totalTime} setTotalTime={setTotalTime} />
+				</Col>
+				{formatTime(totalTime)}
 			</Row>
-			<Row style={{"margin": "5px"}}>
+			<Row style={{"marginTop": "15px"}}>
 				<Form target='#' onSubmit={(e) => {
 					e.preventDefault()
 					alert(`Você acertou: ${correctAnswer}`)
 					setFinished(true)
 				}}>
-					<Row style={{"marginBotton": "5px"}}>
-						<Session theme={"Raciocinio Logico"} numberOfQuestions={1} database={new RaciocioLogico()} />
-						<Session theme={"Informática"} numberOfQuestions={1} database={new Informatica()} />
+					<Row>
+						<Session theme={"Raciocinio Logico"} questions={raciocinioLogicoQuestions.current} />
+						<Session theme={"Informática"} questions={informaticaQuestions.current} />
 					</Row>
 					<hr />
 					<ProgressBar now={parseInt((progress / totalQuestions) * 100)} label={`${parseInt((progress / totalQuestions) * 100)}%`} />
-					<Row>
-						<Col sm={11}>
-							<Button variant="primary" type="submit" style={{'marginTop': "5px", "width": "15%"}}> Submit </Button>
+					<Row style={{"marginTop": "10px"}}>
+						<Col>
+							<Button variant="primary" type="submit" style={{"width": "100px"}}> Submit </Button>
 						</Col>
 					</Row>
 				</Form>

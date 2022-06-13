@@ -3,7 +3,8 @@ import Button from 'react-bootstrap/Button'
 
 function StartButton({
     totalTime,
-    setTotalTime
+    setTotalTime,
+    style
 }){
     const [started, setStarted] = useState(false)
 
@@ -14,13 +15,13 @@ function StartButton({
             }
         }, 1000)
         return () => clearInterval(countdown)
-    }, [started, totalTime])
+    }, [started, totalTime, setTotalTime])
 
     return (
         <Button
             variant={started ? "danger" : "success"}
             type="button"
-            style={{"width": "15%"}}
+            style={style}
             onClick={() => {
                 console.log(started)
                 setStarted(!started)

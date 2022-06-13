@@ -12,6 +12,17 @@ export default class Informatica extends Database {
                 "=SOMASE(A1^A5;\"<15\")"
             ],
             "answer": 1
+        },
+        {
+            "question": "O Microsoft Word é um processador de textos onde podemos encontrar diversas ferramentas de edição e formatação de textos. Sobre essas ferramentas é correto afirmar que:",
+            "options": [
+                "para inserir número de páginas em um documento, utiliza-se o recurso Indicadores.",
+                "a cor da fonte de um documento só pode ser modificada se houver uma impressora colorida instalada no computador.",
+                "para salvar um documento no word pode-se usar a opção Salvar no menu Arquivo ou usar as teclas de atalho CTRL+N",
+                "uma tabela pode ser convertida em texto através do Recurso Converter tabela em texto.",
+                "para inserir uma imagem no Word ela deve estar no formato jpeg ou bmp, não sendo aceito outros formatos."
+            ],
+            "answer": 3
         }
     ]
 }
